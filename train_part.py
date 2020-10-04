@@ -9,5 +9,5 @@ test_data = data["название"].iloc[22]
 tfidf = TfidfVectorizer()
 data['Описание'] = data['Описание'].fillna('')
 tfidf_matrix = tfidf.fit_transform(data['название'])
-pickle.dump(tfidf_matrix, open('tfidf_matrix.pickle', 'wb'))
+pickle.dump(tfidf_matrix, open('../RecommendationApi/tfidf_matrix.pickle', 'wb'))
 
