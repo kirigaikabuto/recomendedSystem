@@ -1,10 +1,13 @@
 import pandas as pd
 from sklearn.metrics.pairwise import linear_kernel
 import pickle
+
 data = pd.read_csv("data.csv")
 test_data = data["название"].iloc[22]
 tfidf_matrix = pickle.load(open('tfidf_matrix.pickle', 'rb'))
-def get_recommendations(title,tfidf_matrix):
+
+
+def get_recommendations(title, tfidf_matrix):
     cosine_sim = linear_kernel(tfidf_matrix, tfidf_matrix)
     indices = pd.Series(data.index, index=data['название']).drop_duplicates()
     idx = indices[title]
@@ -17,6 +20,7 @@ def get_recommendations(title,tfidf_matrix):
     topMovies['Score'] = movie_ratings
     return topMovies
 
-result = get_recommendations(test_data,tfidf_matrix)
+
+result = get_recommendations(test_data, tfidf_matrix)
 print("результаты")
 print(result)
