@@ -3,7 +3,7 @@ from sklearn.metrics.pairwise import linear_kernel
 import pickle
 
 data = pd.read_csv("data.csv")
-test_data = data["название"].iloc[23]
+test_data = data["название"].iloc[22]
 tfidf_matrix = pickle.load(open('tfidf_matrix.pickle', 'rb'))
 
 
