@@ -22,5 +22,5 @@ def get_recommendations(title, tfidf_matrix):
 
 
 result = get_recommendations(test_data, tfidf_matrix)
-print("результаты")
+print(f"Результаты по рекомендации на аниме {test_data}")
 print(result)
