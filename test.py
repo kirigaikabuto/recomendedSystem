@@ -3,7 +3,7 @@ from sklearn.metrics.pairwise import linear_kernel
 import pickle
 
 data = pd.read_csv("data.csv")
-test_data = data["название"].iloc[22]
+test_data = data["название"].iloc[23]
 tfidf_matrix = pickle.load(open('tfidf_matrix.pickle', 'rb'))
 
 
@@ -17,9 +17,13 @@ def get_recommendations(title, tfidf_matrix):
     movie_indices = [i[0] for i in sim_scores]
     topMovies = data['название'].iloc[movie_indices]
     movie_ratings = [i[1] for i in sim_scores]
-    topMovies['Score'] = movie_ratings
-    return topMovies
-
+    result = []
+    for i in range(len(topMovies)):
+        anime = {}
+        anime["name"] = topMovies.iloc[i]
+        anime["score"] = movie_ratings[i]
+        result.append(anime)
+    return result
 
 result = get_recommendations(test_data, tfidf_matrix)
 print(f"Результаты по рекомендации на аниме {test_data}")
